@@ -1,0 +1,71 @@
+# tested on v5.7.13
+
+[mysqld]
+
+#datadir = /var/lib/mysql
+
+# --------------------------------------------------------------
+# Logging and Replication
+#
+log_error     = /var/log/mysql/error.log
+
+log_error_verbosity = 2
+#log_error_verbosity = 3
+
+log_slow_admin_statements = 1
+
+general_log       = 1
+general_log_file  = /var/log/mysql/mysql-general.log
+
+slow_query_log      = 1
+slow_query_log_file = /var/log/mysql/mysql-slow.log
+
+long_query_time               = 15
+log_queries_not_using_indexes = 0
+
+# --------------------------------------------------------------
+#
+default_storage_engine = InnoDB
+
+# --------------------------------------------------------------
+#
+# ** InnoDB
+
+innodb_file_per_table   = 1
+
+# The default value of 1 is required for full ACID compliance.
+# The contents of the InnoDB log buffer are written out to the log file at each transaction commit
+# and the log file is flushed to disk.
+#
+# With a value of 0, the contents of the InnoDB log buffer are written to the log file
+# approximately once per second and the log file is flushed to disk.
+# No writes from the log buffer to the log file are performed at transaction commit.
+# Once-per-second flushing is not 100% guaranteed to happen every second, due to process scheduling issues.
+# Because the flush to disk operation only occurs approximately once per second,
+# you can lose up to a second of transactions with any mysqld process crash.
+#
+# With a value of 2, the contents of the InnoDB log buffer are written to the log file
+# after each transaction commit and the log file is flushed to disk approximately once per second.
+# Once-per-second flushing is not 100% guaranteed to happen every second, due to process scheduling issues.
+# Because the flush to disk operation only occurs approximately once per second,
+# you can lose up to a second of transactions in an operating system crash or a power outage.
+#
+# For durability and consistency in a replication setup that uses InnoDB with transactions:
+#  - If binary logging is enabled, set sync_binlog=1.
+#  - Always set innodb_flush_log_at_trx_commit=1.
+#
+#innodb_flush_log_at_trx_commit = 0
+#innodb_flush_log_at_trx_commit = 1
+innodb_flush_log_at_trx_commit = 2
+
+# As of MySQL 5.7.5, the innodb_buffer_pool_size parameter is dynamic
+#innodb_buffer_pool_size = 512M
+
+innodb_log_file_size = 64M
+#innodb_log_buffer_size = 16M
+
+# --------------------------------------------------------------
+#
+character_set_server = utf8
+collation_server = utf8_bin
+#collation_server = utf8_general_ci

@@ -1,0 +1,21 @@
+# tested on v5.7.13
+
+[mysqld]
+
+# default at MySQL 5.7+
+#auto_generate_certs                    = 1
+#sha256_password_auto_generate_rsa_keys = 1
+
+ssl_cert = /etc/mysql/_cert/server-cert.pem
+ssl_key  = /etc/mysql/_cert/server-key.pem
+
+# mysql_ssl_rsa_setup --datadir="${MYSQL_CERT_DIR}"
+#     ca-key.pem
+#     ca.pem
+#     client-cert.pem
+#     client-key.pem
+#     private_key.pem
+#     public_key.pem
+#     server-cert.pem
+#     server-key.pem
+

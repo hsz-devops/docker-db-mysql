@@ -18,6 +18,9 @@ RUN apt-get update \
         less \
         pwgen \
     && \
+    apt-get autoremove -y --purge && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/* && \
     echo "..."
 
 # ------------------------------------------------------------

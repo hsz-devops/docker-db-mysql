@@ -1,7 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -eu
 set -x
-
 
 # ------------------------------------------------------------------
 # let's make sure we have our configs always enabled, even if they are in a volume

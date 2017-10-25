@@ -18,5 +18,5 @@ chown -R mysql:mysql /etc/mysql/_cert
 # ------------------------------------------------------------------
 #./gen_self_signed_cert.sh "${MYSQL_CERT_DIR}"
 
-#bash -x -v /entrypoint.sh "$@"
-/entrypoint.sh "$@"
+# using exec as per https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/#entrypoint
+exec /entrypoint.sh "$@"

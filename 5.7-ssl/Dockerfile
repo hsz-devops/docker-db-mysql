@@ -1,4 +1,4 @@
-# v1.0.0    2016-06-20     webmaster@highskillz.com
+# v1.0.1    2017-10-25     webmaster@highskillz.com
 #
 FROM mysql:5.7
 

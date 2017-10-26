@@ -20,7 +20,8 @@ rebuild: _DOCKER_BUILD_OPTS=--no-cache $(BUILD_OPTS)
 rebuild: _build_image
 
 _build_image: _check-env-base
-	docker build $(_DOCKER_BUILD_OPTS) -t $(IMAGE_NAME):5.7-ssl ./5.7-ssl
+	docker build $(_DOCKER_BUILD_OPTS) -t $(IMAGE_NAME):5.7-ssl         ./5.7-ssl
+	docker build $(_DOCKER_BUILD_OPTS) -t $(IMAGE_NAME):5.7-ssl-safedir ./5.7-ssl-safedir
 
 # --------------------------------------------------------------------------
 _check-env-base:
@@ -28,14 +29,18 @@ _check-env-base:
 	#test -n "$(TAG_NAME)"
 
 # --------------------------------------------------------------------------
-shell:shell-57
+shell:shell-57sd
 
 shell-57: _check-env-base
 	docker run --rm -it $(IMAGE_NAME):5.7-ssl bash
 
+shell-57sd: _check-env-base
+	docker run --rm -it $(IMAGE_NAME):5.7-ssl-safedir bash
+
 # --------------------------------------------------------------------------
 rmi: _check-env-base
 	docker rmi $(IMAGE_NAME):5.7-ssl
+	docker rmi $(IMAGE_NAME):5.7-ssl-safedir
 
 # --------------------------------------------------------------------------
 clean-junk:

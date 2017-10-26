@@ -1,7 +1,6 @@
 # v1.0.0    2016-06-20     webmaster@highskillz.com
 
 IMAGE_NAME=ez123/db-mysql
-#TAG_VERSION=160715
 
 THIS_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 TIMESTAMP=$(shell date -u +"%Y%m%d_%H%M%S%Z")
@@ -20,8 +19,7 @@ rebuild: _DOCKER_BUILD_OPTS=--no-cache $(BUILD_OPTS)
 rebuild: _build_image
 
 _build_image: _check-env-base
-	docker build $(_DOCKER_BUILD_OPTS) -t $(IMAGE_NAME):5.7-ssl         ./5.7-ssl
-	docker build $(_DOCKER_BUILD_OPTS) -t $(IMAGE_NAME):5.7-ssl-safedir ./5.7-ssl-safedir
+	docker build $(_DOCKER_BUILD_OPTS) -t $(IMAGE_NAME):5.7-ssl  ./5.7-ssl
 
 # --------------------------------------------------------------------------
 _check-env-base:
@@ -29,18 +27,14 @@ _check-env-base:
 	#test -n "$(TAG_NAME)"
 
 # --------------------------------------------------------------------------
-shell:shell-57sd
+shell:shell-57
 
 shell-57: _check-env-base
 	docker run --rm -it $(IMAGE_NAME):5.7-ssl bash
 
-shell-57sd: _check-env-base
-	docker run --rm -it $(IMAGE_NAME):5.7-ssl-safedir bash
-
 # --------------------------------------------------------------------------
 rmi: _check-env-base
 	docker rmi $(IMAGE_NAME):5.7-ssl
-	docker rmi $(IMAGE_NAME):5.7-ssl-safedir
 
 # --------------------------------------------------------------------------
 clean-junk:

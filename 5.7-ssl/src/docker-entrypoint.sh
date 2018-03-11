@@ -7,13 +7,13 @@ set -x
 cp ./cnf/*.cnf /etc/mysql/conf.d
 
 # ------------------------------------------------------------------
-# force generation of certificates...
-# although 5.7.x should already take care of this, I can't seem to find exact instructions to get it running
-#
-MYSQL_CERT_DIR="/etc/mysql/_cert"
-mkdir -p "${MYSQL_CERT_DIR}"
-mysql_ssl_rsa_setup --datadir="${MYSQL_CERT_DIR}"
-chown -R mysql:mysql /etc/mysql/_cert
+## force generation of certificates...
+## although 5.7.x should already take care of this, I can't seem to find exact instructions to get it running
+##
+#MYSQL_CERT_DIR="/etc/mysql/_cert"
+#mkdir -p "${MYSQL_CERT_DIR}"
+#mysql_ssl_rsa_setup --datadir="${MYSQL_CERT_DIR}"
+#chown -R mysql:mysql /etc/mysql/_cert
 
 # ------------------------------------------------------------------
 #./gen_self_signed_cert.sh "${MYSQL_CERT_DIR}"

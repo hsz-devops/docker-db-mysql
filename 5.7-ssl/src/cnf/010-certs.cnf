@@ -6,8 +6,12 @@
 #auto_generate_certs                    = 1
 #sha256_password_auto_generate_rsa_keys = 1
 
-ssl_cert = /etc/mysql/_cert/server-cert.pem
-ssl_key  = /etc/mysql/_cert/server-key.pem
+##ssl_cert = /etc/mysql/_cert/server-cert.pem
+##ssl_key  = /etc/mysql/_cert/server-key.pem
+## mysql initialization will create certs in /var/lib/mysql
+## so we might as well use that for our benefit
+#ssl_cert = /var/lib/mysql/server-cert.pem
+#ssl_key  = /var/lib/mysql/server-key.pem
 
 # mysql_ssl_rsa_setup --datadir="${MYSQL_CERT_DIR}"
 #     ca-key.pem
